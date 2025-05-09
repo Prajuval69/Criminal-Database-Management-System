@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crime Form</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+       
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+            text-align: left;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            background: #dc3545;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .back-button:hover {
+            background: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Add/Edit Crime</h2>
+        <form th:action="@{/crime/save}" th:object="${crime}" method="post">
+            <input type="hidden" th:field="*{id}">
+            
+            <label>Type:</label> 
+            <input type="text" th:field="*{type}" required>
+            
+            <label>Description:</label> 
+            <textarea th:field="*{description}" required></textarea>
+            
+            <label>Date:</label> 
+            <input type="date" th:field="*{date}" required>
+            
+            <label>Location:</label> 
+            <input type="text" th:field="*{location}" required>
+
+            <div class="button-container">
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
